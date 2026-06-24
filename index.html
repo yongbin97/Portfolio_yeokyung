@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>황여경 — Writer</title>
+  <meta name="description" content="작가 황여경의 포트폴리오. 단편영화, 라디오 드라마, 기획개발 작품 소개." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 16px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Design Tokens ── */
+    :root {
+      --blue: #0090D4;
+      --blue-dark: #0070aa;
+      --bg-alt: #F7F9FB;
+      --text-muted: #666;
+      --radius: 8px;
+      --max-w: 1140px;
+      --section-pad: 80px 24px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: var(--section-pad); }
+    section:nth-child(even) { background: var(--bg-alt); }
+
+    /* ── Section Label ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      margin-bottom: 40px;
+      line-height: 1.3;
+    }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--blue);
+      margin-bottom: 40px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline:hover { background: var(--blue); color: #fff; }
+
+    /* ── HERO ── */
+    #hero {
+      background: #fff;
+      padding: 100px 24px 80px;
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--blue);
+    }
+    .hero-text { flex: 1; }
+    .hero-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hero-name {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .hero-contact a:hover { color: var(--blue); }
+
+    /* ── INTRO (학력/약력) ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .intro-block h3 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .intro-list {
+      list-style: none;
+    }
+    .intro-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+      color: #333;
+    }
+    .intro-list li:last-child { border-bottom: none; }
+
+    /* ── FILM (운전연수) ── */
+    .film-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .film-images img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    .film-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tag-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+    }
+    .awards {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .awards li {
+      padding: 8px 0 8px 20px;
+      position: relative;
+      font-size: 15px;
+      border-bottom: 1px solid #eee;
+      color: #333;
+    }
+    .awards li:last-child { border-bottom: none; }
+    .awards li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+    }
+
+    /* ── RADIO ── */
+    .radio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .radio-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .radio-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .radio-icon.pink { background: #fce4ec; }
+    .radio-icon.gold { background: #fff8e1; }
+    .radio-card h3 { font-size: 18px; font-weight: 700; }
+    .radio-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; flex: 1; }
+    .radio-card .platform {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    /* ── DEV WORKS ── */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .work-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      background: #fff;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .work-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+    }
+    .work-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .work-info { padding: 20px; }
+    .work-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .work-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: #eaf5fb;
+      color: var(--blue);
+    }
+    .work-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    footer .footer-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    footer .footer-sub {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    footer .footer-contact {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 28px;
+    }
+    footer .footer-contact a { color: #aaa; }
+    footer .footer-contact a:hover { color: #fff; }
+    .footer-copy {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .works-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      :root { --section-pad: 60px 20px; }
+      .hero-inner { flex-direction: column; text-align: center; gap: 32px; }
+      .hero-contact { justify-content: center; }
+      .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+      .film-images { grid-template-columns: 1fr; }
+      .film-images img { height: 220px; }
+      .radio-grid { grid-template-columns: 1fr; }
+      .works-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-photo { width: 160px; height: 160px; }
+      .works-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <div class="hero-inner">
+      <img
+        src="assets/프로필사진.jpg"
+        alt="작가 황여경 프로필 사진"
+        class="hero-photo"
+      />
+      <div class="hero-text fade-in">
+        <p class="hero-role">Writer</p>
+        <h1 class="hero-name">황여경</h1>
+        <div class="hero-contact">
+          <a href="tel:01032380401">010.3238.0401</a>
+          <a href="mailto:yeokey41@naver.com">yeokey41@naver.com</a>
+        </div>
+        <a
+          href="assets/황여경_작가 포트폴리오.pdf"
+          download="황여경_포트폴리오.pdf"
+          class="btn btn-primary"
+        >
+          ↓ 포트폴리오 PDF 다운로드
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 소개 ══ -->
+  <section id="intro">
+    <div class="container fade-in">
+      <p class="section-label">Profile</p>
+      <h2 class="section-title">학력 &amp; 약력</h2>
+      <div class="intro-grid">
+        <div class="intro-block">
+          <h3>학력</h3>
+          <ul class="intro-list">
+            <li>2023. 08. &nbsp;중앙대학교 영화학과 졸업</li>
+          </ul>
+        </div>
+        <div class="intro-block">
+          <h3>약력</h3>
+          <ul class="intro-list">
+            <li>2025. &nbsp;KBS무대 라디오 드라마 2부 극본</li>
+            <li>2025. &nbsp;한국콘텐츠진흥원 창의인재동반사업 멘티</li>
+            <li>2025. &nbsp;K드라마 숏폼 공모전 우수상</li>
+            <li>2024. &nbsp;단편영화 &lt;운전연수&gt; 연출/각본</li>
+            <li>2024. &nbsp;작가교육수원 기초반 수료</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 단편영화 [운전연수] ══ -->
+  <section id="film">
+    <div class="container fade-in">
+      <p class="section-label">Short Film</p>
+      <h2 class="section-title">단편영화 [운전연수]</h2>
+      <div class="film-images">
+        <img src="assets/운전연수1.jpg" alt="단편영화 운전연수 스틸 1" />
+        <img src="assets/운전연수2.jpg" alt="단편영화 운전연수 스틸 2" />
+      </div>
+      <div class="film-meta">
+        <span class="tag">연출/각본</span>
+        <span class="tag tag-outline">멜로</span>
+        <span class="tag tag-outline">성장 드라마</span>
+      </div>
+      <p style="font-size:15px; color:#444; margin-bottom:28px; max-width:640px; line-height:1.8;">
+        장롱면허 희수는 운전 연수를 핑계로 전남친 영훈을 불러낸다.
+      </p>
+      <ul class="awards">
+        <li>2025. &nbsp;부천국제판타스틱영화제 엑스라리8 상영</li>
+        <li>2025. &nbsp;대단한 단편 영화제 단편경쟁2 상영</li>
+        <li>2025. &nbsp;충무로 독립, 단편 영화제 심사위원 대상 수상</li>
+        <li>2023. &nbsp;영화진흥위원회 독립 단편영화 제작지원작 선정</li>
+      </ul>
+      <a
+        href="https://youtu.be/De4kDvAemq0"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline"
+      >
+        ▶ 유튜브에서 보기
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ 라디오 드라마 ══ -->
+  <section id="radio">
+    <div class="container fade-in">
+      <p class="section-label">Radio Drama</p>
+      <h2 class="section-title">KBS무대 라디오 드라마</h2>
+      <div class="radio-grid">
+        <!-- 사랑의 속삭임 -->
+        <div class="radio-card">
+          <div class="radio-icon pink" aria-hidden="true">🎧</div>
+          <div>
+            <p class="platform">KBS무대</p>
+            <h3>사랑의 속삭임</h3>
+          </div>
+          <p>
+            이혼 직전의 신혼부부가 청각 보조 장치 '사랑의 속삭임'을 사용하게 되며
+            사랑을 회복한다.
+          </p>
+          <a
+            href="https://podcasts.apple.com/kr/podcast/08-30-%ED%86%A0-%EC%82%AC%EB%9E%91%EC%9D%98-%EC%86%8D%EC%82%AD%EC%9E%84-%EA%B7%B9%EB%B3%B8-%ED%99%A9%EC%97%AC%EA%B2%BD/id698519135?i=1000724215197"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+            style="align-self:flex-start; font-size:13px; padding:10px 20px;"
+          >
+            🎵 Apple Podcasts에서 듣기
+          </a>
+        </div>
+        <!-- 금성 목욕탕 -->
+        <div class="radio-card">
+          <div class="radio-icon gold" aria-hidden="true">🎧</div>
+          <div>
+            <p class="platform">KBS무대</p>
+            <h3>금성 목욕탕</h3>
+          </div>
+          <p>
+            경제적 이유로 파혼 후 엄마의 낡은 목욕탕을 정리하다 단골들을 만나며
+            돈보다 소중한 가치를 깨닫는다.
+          </p>
+          <a
+            href="https://podcasts.apple.com/kr/podcast/10-18-%ED%86%A0-%EA%B8%88%EC%84%B1%EB%AA%A9%EC%9A%95%ED%83%95-%EA%B7%B9%EB%B3%B8-%ED%99%A9%EC%97%AC%EA%B2%BD/id698519135?i=1000732497367"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+            style="align-self:flex-start; font-size:13px; padding:10px 20px;"
+          >
+            🎵 Apple Podcasts에서 듣기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 기획개발 작품 ══ -->
+  <section id="dev-works">
+    <div class="container fade-in">
+      <p class="section-label">Development Works</p>
+      <h2 class="section-title">기획개발 작품</h2>
+      <p style="font-size:14px; color:var(--text-muted); margin-top:-28px; margin-bottom:36px;">
+        영화, 시리즈, 라디오 드라마, 숏폼 등 다양한 각본 집필
+      </p>
+      <div class="works-grid">
+
+        <!-- 단체면접 -->
+        <div class="work-card">
+          <img src="assets/단체면접.jpg" alt="단체면접 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;단체면접&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">장편 극영화</span>
+              <span class="work-tag">좀비(재난)</span>
+              <span class="work-tag">로맨틱 코미디</span>
+            </div>
+            <p style="font-size:13px; color:#555;">시나리오 초고</p>
+            <p class="work-note">2024. 부천파다 기획개발프로젝트 최종심</p>
+          </div>
+        </div>
+
+        <!-- 피드 -->
+        <div class="work-card">
+          <img src="assets/피드.jpg" alt="피드 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;피드&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">장편 극영화</span>
+              <span class="work-tag">심리 스릴러</span>
+              <span class="work-tag">호러</span>
+            </div>
+            <p style="font-size:13px; color:#555;">시나리오 1고</p>
+            <p class="work-note">2025. 창의인재동반사업 선정</p>
+          </div>
+        </div>
+
+        <!-- 워터퀸즈 -->
+        <div class="work-card">
+          <img src="assets/워터퀸즈.jpg" alt="워터퀸즈 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;워터퀸즈&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">시리즈 8부작</span>
+              <span class="work-tag">스포츠</span>
+              <span class="work-tag">로맨틱 코미디</span>
+            </div>
+            <p style="font-size:13px; color:#555;">시나리오 1, 2부 초고</p>
+          </div>
+        </div>
+
+        <!-- 제목 비공개 -->
+        <div class="work-card">
+          <img src="assets/비공개.jpg" alt="제목 비공개 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;제목 비공개&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">숏폼 시나리오</span>
+              <span class="work-tag">로맨틱 코미디</span>
+            </div>
+            <p class="work-note">2027년 방영 예정</p>
+          </div>
+        </div>
+
+        <!-- 여름잠 -->
+        <div class="work-card">
+          <img src="assets/여름잠.jpg" alt="여름잠 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;여름잠&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">단막극 1부</span>
+              <span class="work-tag">로맨틱 코미디</span>
+            </div>
+            <p style="font-size:13px; color:#555; line-height:1.6;">시나리오 1고</p>
+            <p class="work-note">
+              결혼을 앞둔 여친이 '여름잠'을 선언하고 사라지자 의심 많은 남자는 여진을 찾아 나선다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 위대한 유산 -->
+        <div class="work-card">
+          <img src="assets/위대한 유산.jpg" alt="위대한 유산 포스터" />
+          <div class="work-info">
+            <h3 class="work-title">&lt;위대한 유산&gt;</h3>
+            <div class="work-tags">
+              <span class="work-tag">단막극 2부</span>
+              <span class="work-tag">가족 드라마</span>
+            </div>
+            <p style="font-size:13px; color:#555; line-height:1.6;">시나리오 초고</p>
+            <p class="work-note">
+              엄마의 유산 1억을 발견한 세 자매, 서민들의 상속 분쟁이 벌어진다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p class="footer-title">황여경</p>
+    <p class="footer-sub">Writer</p>
+    <a
+      href="assets/황여경_작가 포트폴리오.pdf"
+      download="황여경_포트폴리오.pdf"
+      class="btn btn-primary"
+      style="margin: 0 auto;"
+    >
+      ↓ 포트폴리오 PDF 다운로드
+    </a>
+    <div class="footer-contact">
+      <a href="tel:01032380401">010.3238.0401</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:yeokey41@naver.com">yeokey41@naver.com</a>
+    </div>
+    <p class="footer-copy">© 2025 황여경. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
